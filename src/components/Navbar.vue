@@ -3,7 +3,9 @@
     :class="[menuBoolean ? 'pointer-events-auto' : 'pointer-events-none md:pointer-events-auto']">
         <div class="md:container flex flex-col md:flex-row md:items-center justify-between">
             <div class="z-50 flex flex-row justify-between py-4 shadow-md md:shadow-none md:y-6 px-6 md:px-0 bg-white dark:bg-zinc-900">
-                <img src="../assets/logo.svg" class="w-auto h-10 cursor-pointer" alt="foxxy anime logo">
+                <RouterLink to="/" class="z-50 pointer-events-auto">
+                    <img src="../assets/logo.svg" class="w-auto h-10 cursor-pointer" alt="foxxy anime logo">
+                </RouterLink>
                 <button class="block md:hidden pointer-events-auto" @click="toggleMenu()">
                     <MenuIcon class="text-zinc-900 dark:text-white" height="30px" width="30px" />
                 </button>
