@@ -1,0 +1,1 @@
+import{o as e,a as o,d as t}from"./index-0ad73c88.js";const r={viewBox:"0 0 24 24",width:"1.2em",height:"1.2em"},c=t("path",{fill:"currentColor",d:"M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11H4Z"},null,-1),n=[c];function s(a,i){return e(),o("svg",r,n)}const l={name:"mdi-arrow-right",render:s};export{l as A};
