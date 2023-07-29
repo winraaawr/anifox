@@ -108,7 +108,7 @@ async function getFeatured() {
   try {
     console.log("Fetching Featured");
     const response = await axios.get(
-      "https://api.jikan.moe/v4/top/anime?filter=airing&limit=6&page=2"
+      "https://api.jikan.moe/v4/anime?status=airing&order_by=popularity&page=2&limit=6"
     );
     return await response.data.data;
   } catch (error) {
@@ -118,19 +118,17 @@ async function getFeatured() {
 
 const nextSlide = () => {
   index.value === 5 ? (index.value = 0) : (index.value = index.value + 1);
-  console.log("next clicked");
 };
 
 const backSlide = () => {
   index.value === 0 ? (index.value = 5) : (index.value = index.value - 1);
-  console.log("back clicked");
 };
 
 featured.value = await getFeatured();
 
 onMounted(async () => {
   for (let i = 0; i < 60; i++) {
-    await useTimeout(6000);
+    await useTimeout(10000);
     nextSlide();
   }
 });

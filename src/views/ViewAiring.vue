@@ -1,7 +1,7 @@
 <template>
   <Suspense>
     <template #default>
-      <Anime />
+      <AiringPage />
     </template>
     <template #fallback>
       <Loading />
@@ -9,7 +9,8 @@
   </Suspense>
 </template>
 
+
 <script setup>
-import Anime from "../components/Anime.vue";
-import Loading from "../components/Loading.vue";
+  import AiringPage from '../components/AiringPage.vue';
+  import Loading from '../components/Loading.vue';
 </script>

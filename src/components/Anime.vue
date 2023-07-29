@@ -1,6 +1,7 @@
 <template>
   <div class="min-h-screen bg-white dark:bg-zinc-950 pb-6">
     <div
+      v-if="status === 200 && loaded === true"
       class="md:container grid grid-cols-1 md:grid-flow-row md:grid-cols-4 min-h-screen h-auto w-full pt-[80px] md:pt-[100px]"
     >
       <div class="px-2 flex flex-col space-y-4 mb-6">
@@ -8,10 +9,14 @@
           class="max-h-[480px] object-cover object-center"
           :src="data.images.jpg.large_image_url"
         />
-        <h1 class="text-gray-800 dark:text-white text-xl font-bold">{{ data.title }}</h1>
+        <h1 class="text-gray-800 dark:text-white text-xl font-bold">
+          {{ data.title }}
+        </h1>
 
         <!-- Anime Titles -->
-        <div class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3">
+        <div
+          class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3"
+        >
           <div class="col-span-1">
             <span>Alternative Titles:</span>
           </div>
@@ -21,7 +26,9 @@
         </div>
 
         <!-- Anime Studio -->
-        <div class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3">
+        <div
+          class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3"
+        >
           <div class="col-span-1">
             <span>Studio:</span>
           </div>
@@ -33,7 +40,9 @@
         </div>
 
         <!-- Anime Type -->
-        <div class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3">
+        <div
+          class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3"
+        >
           <div class="col-span-1">
             <span>Type:</span>
           </div>
@@ -42,8 +51,22 @@
           </div>
         </div>
 
+        <!-- Rating -->
+        <div
+          class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3"
+        >
+          <div class="col-span-1">
+            <span>Rating:</span>
+          </div>
+          <div class="flex flex-col col-span-2">
+            <span> {{ data.rating }} </span>
+          </div>
+        </div>
+
         <!-- Anime Episode -->
-        <div class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3">
+        <div
+          class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3"
+        >
           <div class="col-span-1">
             <span>Episodes:</span>
           </div>
@@ -53,7 +76,9 @@
         </div>
 
         <!-- Anime Status -->
-        <div class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3">
+        <div
+          class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3"
+        >
           <div class="col-span-1">
             <span>Status:</span>
           </div>
@@ -62,8 +87,10 @@
           </div>
         </div>
 
-        <!-- Anime Status -->
-        <div class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3">
+        <!-- Anime Date Aired -->
+        <div
+          class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3"
+        >
           <div class="col-span-1">
             <span>{{ air }}</span>
           </div>
@@ -75,19 +102,24 @@
           </div>
         </div>
 
-        <!-- Rating -->
-        <div class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3">
+        <!-- Anime Status -->
+        <div
+          class="text-xs text-gray-800 dark:text-white grid grid-flow-row grid-cols-3"
+        >
           <div class="col-span-1">
-            <span>Rating:</span>
+            <span>Season & Year:</span>
           </div>
           <div class="flex flex-col col-span-2">
-            <span> {{ data.rating }} </span>
+            <span class="capitalize">
+              {{ data.season != null ? data.season : "N/A" }}
+              {{ data.year != null ? data.year : "N/A" }}</span
+            >
           </div>
         </div>
       </div>
       <div class="px-2 col-span-3 flex flex-col">
         <div
-          class="flex flex-row md:grid md:grid-cols-3 justify-between border-orange-500 border-b-2 border-t-2 py-2"
+          class="flex flex-row md:grid md:grid-cols-3 justify-between border-orange-500 border-b-4 border-t-4 py-2"
         >
           <div class="p-2 text-gray-800 dark:text-white">
             <!-- Rank -->
@@ -109,14 +141,31 @@
         <!-- Synopsis -->
         <div class="flex flex-col border-orange-500 border-b-2 py-6">
           <h1 class="text-gray-800 dark:text-white font-bold mb-4">Synopsis</h1>
-          <p class="text-gray-800 dark:text-white text-sm">
+          <p class="text-gray-800 dark:text-white text-sm mb-4">
             {{ data.synopsis != null ? data.synopsis : "N/A" }}
           </p>
+          <div class="flex flex-wrap text-white text-xs">
+            <span class="mr-2">Genres: </span>
+            <span class="mr-2" v-for="genre in data.genres">{{
+              "    " + genre.name
+            }}</span>
+            <span class="mr-2" v-for="themes in data.themes">{{
+              " " + themes.name
+            }}</span>
+            <span class="mr-2" v-for="demo in data.demographics">{{
+              "    " + demo.name
+            }}</span>
+          </div>
         </div>
 
         <!-- trailer -->
-        <div v-if="data.trailer.embed_url != null" class="py-6 border-orange-500 border-b-2">
-          <h1 class="text-gray-800 dark:text-white font-bold mb-4">Watch Trailer</h1>
+        <div
+          v-if="data.trailer.embed_url != null"
+          class="py-6 border-orange-500 border-b-2"
+        >
+          <h1 class="text-gray-800 dark:text-white font-bold mb-4">
+            Watch Trailer
+          </h1>
           <iframe
             class="w-full h-[300px] md:h-[600px]"
             :src="data.trailer.embed_url.replace('&autoplay=1', '')"
@@ -128,42 +177,69 @@
         </div>
 
         <!-- Related -->
-        <div v-if="relatedAnime.length != 0" class="py-6 grid grid-cols-2 grid-flow-row gap-y-2 gap-x-4">
-          <h1 class="text-gray-800 dark:text-white font-bold mb-2 col-span-2">Related Anime</h1>
+        <div
+          v-if="relatedAnime.length != 0"
+          class="py-6 grid grid-cols-2 grid-flow-row gap-y-2 gap-x-4"
+        >
+          <h1 class="text-gray-800 dark:text-white font-bold mb-2 col-span-2">
+            Related Anime
+          </h1>
           <div v-for="related in relatedAnime">
             <a :href="'/anime/' + related.anime.mal_id" class="group">
-            <div>
+              <div>
                 <span class="uppercase font-bold text-sm text-orange-500">
-                    {{ related.relation }}
+                  {{ related.relation }}
                 </span>
-                <h1 class="w-full whitespace-nowrap overflow-hidden overflow-ellipsis font-bold text-xl text-gray-800 dark:text-white mb-4 group-hover:text-orange-500 transition-all">{{related.anime.title}}</h1>
-            </div>
-              <img :src="related.anime.images.jpg.large_image_url" 
-              class="w-full h-[200px] object-cover object-center rounded-md border-2 border-transparent group-hover:border-orange-500 transition-all">
-          </a>
+                <h1
+                  class="w-full whitespace-nowrap overflow-hidden overflow-ellipsis font-bold text-base md:text-xl text-gray-800 dark:text-white mb-4 group-hover:text-orange-500 transition-all"
+                >
+                  {{ related.anime.title }}
+                </h1>
+              </div>
+              <img
+                :src="related.anime.images.jpg.large_image_url"
+                class="w-full h-[200px] object-cover object-center rounded-md border-2 border-transparent group-hover:border-orange-500 transition-all"
+              />
+            </a>
           </div>
         </div>
       </div>
     </div>
+    <div v-if="status >= 400 && loaded === true" class="">
+      <PageNotFound404 />
+    </div>
+    <!-- <h1 class="text-orange-500 text-7xl">{{ status }}</h1> -->
   </div>
 </template>
 
-<script setup>
+<script async setup>
 import moment from "moment";
 import axios from "axios";
-import { ref } from 'vue'
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import PageNotFound404 from "./PageNotFound404.vue"
 
 const route = useRoute();
+const status = ref();
+const loaded = ref(false);
+const relatedAnime = ref([])
+const airedFrom = ref()
+const airedTo = ref()
+const air = ref()
+const data = ref({})
 
 const animeID = route.params.id;
 const requestByID = "https://api.jikan.moe/v4/anime/";
 
 async function getAnime() {
   try {
-    const response = await axios.get("https://api.jikan.moe/v4/anime/" + animeID + "/full");
+    const response = await axios.get(
+      "https://api.jikan.moe/v4/anime/" + animeID + "/full"
+    );
+    status.value = response.status;
     return response.data.data;
   } catch (error) {
+    status.value = error.status;
     return error;
   }
 }
@@ -173,7 +249,7 @@ async function getAnimeByID(id) {
     const response = await axios.get(requestByID + id);
     return response.data.data;
   } catch (error) {
-    return error;
+    return error.status;
   }
 }
 
@@ -184,31 +260,43 @@ async function getRelations(anime) {
       anime.relations[i].relation === "Prequel" ||
       anime.relations[i].relation === "Sequel"
     ) {
-      related.push({anime: await getAnimeByID(anime.relations[i].entry[0].mal_id), relation: anime.relations[i].relation});
+      related.push({
+        anime: await getAnimeByID(anime.relations[i].entry[0].mal_id),
+        relation: anime.relations[i].relation,
+      });
     }
   }
   return related;
 }
 
+
 //current page anime data
-const data = await getAnime();
+data.value = await getAnime();
+onMounted(async () => {
+  
 
-//get related anime of the current anime
-const relatedAnime = await getRelations(data);
-console.log(relatedAnime);
+  if (status.value === 200) {
+    //get related anime of the current anime
+    relatedAnime.value = await getRelations(data.value);
 
-//air stuffs
-let air;
-if (data.status === "Not yet aired") {
-  air = "Airs on:";
-} else if (data.status === "Finished Airing") {
-  air = "Aired:";
-} else if (data.status === "Currently Airing") {
-  air = "Airing:";
-} else {
-  air = "Aired:";
-}
+    //air stuffs
+    if (data.status === "Not yet aired") {
+      air.value = "Airs on:";
+    } else if (data.status === "Finished Airing") {
+      air.value= "Aired:";
+    } else if (data.status === "Currently Airing") {
+      air.value = "Airing:";
+    } else {
+      air.value = "Aired:";
+    }
 
-const airedFrom = moment(new Date(data.aired.from)).format("MMM DD YYYY");
-const airedTo = moment(new Date(data.aired.to)).format("MMM DD YYYY");
+    airedFrom.value = moment(new Date(data.value.aired.from)).format("MMM DD YYYY");
+    airedTo.value = moment(new Date(data.value.aired.to)).format("MMM DD YYYY");
+    loaded.value = true
+  }else{
+    status.value = data.value.response.status
+    loaded.value = true
+    console.log(status.value)
+  }
+});
 </script>

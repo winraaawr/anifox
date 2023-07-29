@@ -15,7 +15,7 @@
       <!-- Search and Filter -->
       <Suspense>
         <template #default>
-          <SearchFilter />
+          <SearchFilter @searching="updateSearchStatus"/>
         </template>
         <template #fallback>
           <span class="text-white">Loading...</span>
@@ -24,19 +24,19 @@
 
 
       <!-- Top Section -->
-      <section>
+      <section :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'" class="transition-all">
         <Suspense>
           <template #default>
             <Top />
           </template>
           <template #fallback>
-            <CardSectionSkeleton section="Top Anime" />
+            <CardSectionSkeleton section="Top Airing Anime" />
           </template>
         </Suspense>
       </section>
 
       <!-- Recent Episode Update Section -->
-      <section>
+      <section :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'" class="transition-all">
         <Suspense>
           <template #default>
             <Popular />
@@ -49,7 +49,7 @@
       </section>
 
       <!-- Upcoming Section -->
-      <section>
+      <section :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'" class="transition-all">
         <Suspense>
           <template #default>
             <Upcoming />
@@ -66,10 +66,18 @@
 
 <script setup>
 import Carousel from '../components/Carousel.vue';
-import SearchFilter from '../components/SearchFilter.vue'
+import SearchFilter from '../components/SearchFilter.vue';
 import Top from '../components/Top.vue';
 import Popular from '../components/Popular.vue';
 import Upcoming from '../components/Upcoming.vue';
 import CardSectionSkeleton from '../components/CardSectionSkeleton.vue';
+import { ref } from 'vue'
+
+const childSearching = ref(false)
+
+function updateSearchStatus(status){
+  childSearching.value = status
+  console.log(childSearching.value)
+}
 
 </script>
