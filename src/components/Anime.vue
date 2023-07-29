@@ -185,11 +185,11 @@
             Related Anime
           </h1>
           <div v-for="related in relatedAnime">
-            <a :href="'/anime/' + related.anime.mal_id" class="group">
+            <a :href="'/anifox/anime/' + related.anime.mal_id" class="group">
               <div>
                 <span class="uppercase font-bold text-sm text-orange-500">
                   {{ related.relation }}
-                </span>
+                </span>z
                 <h1
                   class="w-full whitespace-nowrap overflow-hidden overflow-ellipsis font-bold text-base md:text-xl text-gray-800 dark:text-white mb-4 group-hover:text-orange-500 transition-all"
                 >

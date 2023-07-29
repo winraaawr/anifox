@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+  <div class="grid grid-cols-2 md:grid-cols-6 gap-4 px-2">
     <Card
       v-if="data != null"
       v-for="anime in data"
