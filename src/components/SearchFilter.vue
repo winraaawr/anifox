@@ -1,6 +1,5 @@
 <template>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-2 md:px-0">
-    <div class="col-span-2 md:col-span-4">{{ isSearching }}</div>
     <div class="flex flex-col space-y-2">
       <span class="font-semibold text-gray-800 dark:text-white">Search</span>
       <input
