@@ -12,4 +12,5 @@
 <script setup>
 import Anime from "../components/Anime.vue";
 import Loading from "../components/Loading.vue";
+
 </script>

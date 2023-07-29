@@ -23,7 +23,7 @@ import Footer from "./components/Footer.vue";
       </div>
     </template>
     <template #default>
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </template>
   </Suspense>
 
