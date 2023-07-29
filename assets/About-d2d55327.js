@@ -1,1 +1,0 @@
-import o from"./PageNotFound404-1316fc54.js";import{o as t,c as r}from"./index-0ad73c88.js";import"./logo-no-text-e311533e.js";import"./_plugin-vue_export-helper-c27b6911.js";const s={__name:"About",setup(e){return(a,c)=>(t(),r(o))}};export{s as default};
