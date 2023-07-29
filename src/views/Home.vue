@@ -1,30 +1,39 @@
 <template>
   <main class="bg-slate-100 dark:bg-zinc-950">
-    <div class="md:container flex flex-col min-h-screen h-auto w-full pt-[80px] md:pt-[100px] space-y-4">
+    <div
+      class="md:container flex flex-col min-h-screen h-auto w-full pt-[80px] md:pt-[100px] space-y-4"
+    >
       <Suspense>
         <template #default>
-          <Carousel/>
+          <Carousel />
         </template>
         <template #fallback>
-          <div class="flex flex-row w-full h-[260px] md:h-[400px] rounded-md bg-gray-700 animate-pulse">
-
-          </div>
+          <div
+            class="flex flex-row w-full h-[260px] md:h-[400px] rounded-md bg-gray-700 animate-pulse"
+          ></div>
         </template>
       </Suspense>
-      
+
       <!-- Search and Filter -->
       <Suspense>
         <template #default>
-          <SearchFilter @searching="updateSearchStatus"/>
+          <SearchFilter @searching="updateSearchStatus" />
         </template>
         <template #fallback>
-          <span class="text-white">Loading...</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-2 md:px-0">
+            <span class="h-8 w-full rounded-md animate-pulse bg-gray-800/50 dark:bg-zinc-800 text-transparent">a</span>
+            <span class="h-8 w-full rounded-md animate-pulse bg-gray-800/50 dark:bg-zinc-800 text-transparent">a</span>
+            <span class="h-8 w-full rounded-md animate-pulse bg-gray-800/50 dark:bg-zinc-800 text-transparent">a</span>
+            <span class="h-8 w-full rounded-md animate-pulse bg-gray-800/50 dark:bg-zinc-800 text-transparent">a</span>
+          </div>
         </template>
       </Suspense>
 
-
       <!-- Top Section -->
-      <section :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'" class="transition-all">
+      <section
+        :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'"
+        class="transition-all"
+      >
         <Suspense>
           <template #default>
             <Top />
@@ -36,20 +45,25 @@
       </section>
 
       <!-- Recent Episode Update Section -->
-      <section :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'" class="transition-all">
+      <section
+        :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'"
+        class="transition-all"
+      >
         <Suspense>
           <template #default>
             <Popular />
           </template>
           <template #fallback>
             <CardSectionSkeleton section="Most Popular" />
-            
           </template>
         </Suspense>
       </section>
 
       <!-- Upcoming Section -->
-      <section :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'" class="transition-all">
+      <section
+        :class="childSearching ? 'opacity-0 h-0' : 'opacity-100'"
+        class="transition-all"
+      >
         <Suspense>
           <template #default>
             <Upcoming />
@@ -59,25 +73,23 @@
           </template>
         </Suspense>
       </section>
-
     </div>
   </main>
 </template>
 
 <script setup>
-import Carousel from '../components/Carousel.vue';
-import SearchFilter from '../components/SearchFilter.vue';
-import Top from '../components/Top.vue';
-import Popular from '../components/Popular.vue';
-import Upcoming from '../components/Upcoming.vue';
-import CardSectionSkeleton from '../components/CardSectionSkeleton.vue';
-import { ref } from 'vue'
+import Carousel from "../components/Carousel.vue";
+import SearchFilter from "../components/SearchFilter.vue";
+import Top from "../components/Top.vue";
+import Popular from "../components/Popular.vue";
+import Upcoming from "../components/Upcoming.vue";
+import CardSectionSkeleton from "../components/CardSectionSkeleton.vue";
+import { ref } from "vue";
 
-const childSearching = ref(false)
+const childSearching = ref(false);
 
-function updateSearchStatus(status){
-  childSearching.value = status
-  console.log(childSearching.value)
+function updateSearchStatus(status) {
+  childSearching.value = status;
+  console.log(childSearching.value);
 }
-
 </script>
