@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col h-full space-y-2 md:space-y-4">
-        <div class="mb-2 h-[160px] md:h-[255px]">
+        <div class="mb-2 h-[160px] md:h-[220px]">
             <div class="rounded-t-md w-full h-[95%] bg-slate-200 dark:bg-gray-700 animate-pulse">
 
             </div>

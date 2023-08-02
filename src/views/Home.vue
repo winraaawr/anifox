@@ -20,7 +20,7 @@
           <SearchFilter @searching="updateSearchStatus" />
         </template>
         <template #fallback>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-2 md:px-0">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 px-2 md:px-0">
             <span class="h-8 w-full rounded-md animate-pulse bg-gray-800/50 dark:bg-zinc-800 text-transparent">a</span>
             <span class="h-8 w-full rounded-md animate-pulse bg-gray-800/50 dark:bg-zinc-800 text-transparent">a</span>
             <span class="h-8 w-full rounded-md animate-pulse bg-gray-800/50 dark:bg-zinc-800 text-transparent">a</span>

@@ -6,7 +6,7 @@
       >
         <img
           :src="poster"
-          class="h-[230px] md:h-[300px] w-full object-cover rounded-t-md"
+          class="w-full aspect-[9/12] object-cover rounded-t-md"
         />
         <div
           class="py-2 px-2 w-full flex flex-row items-center justify-between space-x-2 bg-gray-800 rounded-b-md"
@@ -14,22 +14,22 @@
           <div class="flex flex-row items-center space-x-2">
             <span
               v-if="episodes != null"
-              class="text-white/80 text-[10px] md:border-2 md:border-rose-500 md:px-1 md:py-0.5 md:rounded-md text-rose-500 md:text-xs"
+              class="text-white/80 text-[10px] md:border-2 md:border-rose-500 md:px-1 md:py-0.5 md:rounded-md text-rose-500"
               >{{ episodes === null ? "N/A" : episodes }} EP
             </span>
             <span
               v-if="episodeTitle != null && episodeNumber != null"
-              class="text-white/80 text-[10px] md:border-2 md:border-rose-500 md:px-1 md:py-0.5 md:rounded-md text-rose-500 md:text-xs"
+              class="text-white/80 text-[10px] md:border-2 md:border-rose-500 md:px-1 md:py-0.5 md:rounded-md text-rose-500"
               >EP {{ episodeNumber }}
             </span>
             <span
               v-if="format"
-              class="text-white/80 text-[10px] md:border-2 md:border-purple-500 md:px-1 md:py-0.5 md:rounded-md text-purple-500 uppercase md:text-xs"
+              class="text-white/80 text-[10px] md:border-2 md:border-purple-500 md:px-1 md:py-0.5 md:rounded-md text-purple-500 uppercase"
               >{{ format }}
             </span>
             <span
               v-if="year || season"
-              class="text-white/80 text-[10px] md:border-2 md:border-green-500 md:px-1 md:py-0.5 md:rounded-md text-green-500 uppercase md:text-xs"
+              class="text-white/80 text-[10px] md:border-2 md:border-green-500 md:px-1 md:py-0.5 md:rounded-md text-green-500 uppercase"
               >{{ year + " " + season }}
             </span>
           </div>
