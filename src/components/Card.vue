@@ -6,7 +6,7 @@
       >
         <img
           :src="poster"
-          class="w-full aspect-[9/12] object-cover rounded-t-md"
+          class="w-full aspect-[9/12] object-cover rounded-t-md bg-slate-300 dark:bg-gray-800"
         />
         <div
           class="py-2 px-2 w-full flex flex-row items-center justify-between space-x-2 bg-gray-800 rounded-b-md"
